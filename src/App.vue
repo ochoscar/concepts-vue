@@ -9,10 +9,11 @@
 <!-- #################################################################################### -->
 <template>
   <div id="nav" class="principal">
-    <span>App</span>
+    <span>App </span>
     <span>{{ login }}</span>
+    <br/>
     <span>Age {{ age }}</span>
-    <Entrada></Entrada>
+    <tarjeta-datos></tarjeta-datos>
   </div>
 </template>
 
@@ -20,11 +21,11 @@
 <!-- ###### Sección de Script                                                      ###### -->
 <!-- #################################################################################### -->
 <script>
-import Entrada from '@/components/Entrada.vue'
+import TarjetaDatos from './components/TarjetaDatos.vue';
 
 export default {
+  components: { TarjetaDatos },
   name: 'App',
-  componetnts: { Entrada },
   data() {
     return {
       login: 'ochoscar',
@@ -39,7 +40,7 @@ export default {
     },
     age() {
       let currentDate = new Date();
-      let diff = currentDate - this.birthday;
+      let diff = Math.floor((currentDate - this.birthday) / 1000 / 60 / 60 / 24 / 365.25);
       return diff;
     }
   },
@@ -62,7 +63,7 @@ export default {
     padding: 10px;
     color: white;
     border-radius: 5px;
-    width: 100px;
+    width: 500px;
     font-size: 3rem;
     text-align: center;
   }
