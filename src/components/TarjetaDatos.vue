@@ -8,10 +8,15 @@
 <!-- ###### Sección de HTML                                                        ###### -->
 <!-- #################################################################################### -->
 <template>
-    <div id="nav" class="tarjeta">
+    <div>
       <transition name="efecto" mode="out-in">
-        <span :key="indice" > {{ datos[indice] }} </span>
+        <div id="nav" class="tarjeta" :key="indice">
+          <span :key="indice" > {{ datos[indice] }} </span>
+        </div>
       </transition>
+      <div>
+        <slot name="slot1"></slot>
+      </div>
     </div>
   </template>
   
@@ -47,10 +52,12 @@
   <!-- #################################################################################### -->
   <style>
     .tarjeta {
+      background: rgb(152, 152, 197);
       color: white;
       border-radius: 5px;
       font-size: 3rem;
       text-align: center;
+      margin: 5px;
     }
 
     .efecto-enter {
@@ -59,14 +66,37 @@
 
     .efecto-enter-active {
       transition: opacity 1s ease-out;
+      animation: efecto-in 0.4s ease-out forwards;
     }
 
     .efecto-leave-active {
       transition: opacity 0.5s ease-out;
-      opacity: 0;
+      animation: efecto-out 0.2s ease-out forwards;
+      opacity: 1;
     }
 
     .efecto-leave {
+    }
+
+    @keyframes efecto-in {
+      0% {
+        transform: scaleY(0);
+      }
+      70% {
+        transform: scaleY(1.4);
+      }
+      100% {
+        transform: scaleY(1);
+      }
+    }
+
+    @keyframes efecto-out {
+      from {
+        transform: scaleY(1);
+      }
+      to {
+        transform: scaleY(0);
+      }
     }
   </style>
   

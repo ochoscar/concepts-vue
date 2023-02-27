@@ -13,7 +13,12 @@
     <span>{{ login }}</span>
     <br/>
     <span>Age {{ age }}</span>
-    <tarjeta-datos></tarjeta-datos>
+    <component :is="actual"></component>
+    <tarjeta-datos>
+      <template v-slot:slot1>
+        <span>Componente en Slot</span>
+      </template>
+    </tarjeta-datos>
   </div>
 </template>
 
@@ -31,7 +36,8 @@ export default {
       login: 'ochoscar',
       firstname: 'ochoscar',
       lastname: 'ochoscar',
-      birthday: new Date(1984, 2, 3)
+      birthday: new Date(1984, 2, 3),
+      actual: 'tarjeta-datos'
     }
   },
   computed: {
